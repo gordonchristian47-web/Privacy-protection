@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firearm Safety & Background Checks</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #777;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9f9f9;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--secondary);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--accent);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background-color: #c0392b;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+            margin: 15px auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            font-weight: 500;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232c3e50"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Background Checks Section */
+        .checks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .check-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .check-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .check-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .check-card h3 i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        /* Statistics Section */
+        .stats {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .resource-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .resource-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .resource-card ul {
+            list-style-position: inside;
+        }
+        
+        .resource-card ul li {
+            margin-bottom: 10px;
+        }
+        
+        /* FAQ Section */
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            display: none;
+            padding-top: 10px;
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">Firearm<span>Safety</span></div>
+            <div class="mobile-menu">☰</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#background-checks">Background Checks</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Understanding Firearm Background Checks</h1>
+            <p>Comprehensive information about gun control policies, background check systems, and resources for responsible firearm ownership.</p>
+            <a href="#background-checks" class="btn">Learn More</a>
+            <a href="#resources" class="btn btn-accent">Get Resources</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Firearm Background Checks</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Background checks for firearm purchases are a critical component of gun control policies in the United States. These checks are designed to prevent firearms from falling into the hands of individuals who may pose a danger to themselves or others.</p>
+                    <p>The National Instant Criminal Background Check System (NICS) is used by licensed firearms dealers to determine whether a prospective buyer is eligible to buy firearms. While federal law requires background checks for guns sold through licensed dealers, private sales regulations vary by state.</p>
+                    <p>Understanding how these systems work, their effectiveness, and the ongoing debates surrounding them is essential for informed discussions about gun policy and public safety.</p>
+                </div>
+                <div class="about-image">
+                    <!-- Placeholder for an image -->
+                    <div style="width:100%; height:300px; background-color:#e0e0e0; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#777;">
+                        [Infographic about background checks]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Background Checks Section -->
+    <section id="background-checks" style="background-color: #f0f5f9;">
+        <div class="container">
+            <h2 class="section-title">How Background Checks Work</h2>
+            <div class="checks-grid">
+                <div class="check-card">
+                    <h3>✓ NICS Process</h3>
+                    <p>The National Instant Criminal Background Check System is used by Federal Firearms Licensees to instantly determine whether a prospective buyer is eligible to buy firearms.</p>
+                    <p>Checks are conducted through the FBI or state agencies and typically take only minutes to complete.</p>
+                </div>
+                <div class="check-card">
+                    <h3>✓ Prohibited Categories</h3>
+                    <p>Federal law prohibits certain categories of people from purchasing firearms, including:</p>
+                    <ul>
+                        <li>Convicted felons</li>
+                        <li>Domestic violence offenders</li>
+                        <li>Individuals with certain mental health adjudications</li>
+                        <li>Unlawful drug users</li>
+                        <li>Individuals subject to restraining orders</li>
+                    </ul>
+                </div>
+                <div class="check-card">
+                    <h3>✓ State Variations</h3>
+                    <p>While federal law establishes a baseline, states have implemented various additional requirements:</p>
+                    <ul>
+                        <li>Universal background checks</li>
+                        <li>Waiting periods</li>
+                        <li>Permit-to-purchase requirements</li>
+                        <li>Extreme risk protection orders</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Background Check Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>300M+</h3>
+                    <p>Background checks conducted since 1998</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1.5M+</h3>
+                    <p>Denied transactions since 1998</p>
+                </div>
+                <div class="stat-item">
+                    <h3>22</h3>
+                    <p>States with universal background check laws</p>
+                </div>
+                <div class="stat-item">
+                    <h3>93%</h3>
+                    <p>Americans who support universal background checks</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources">
+        <div class="container">
+            <h2 class="section-title">Resources & Organizations</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>Government Resources</h3>
+                    <ul>
+                        <li><a href="https://www.fbi.gov/services/cjis/nics" target="_blank">FBI NICS Page</a></li>
+                        <li><a href="https://www.atf.gov/" target="_blank">Bureau of Alcohol, Tobacco, Firearms and Explosives</a></li>
+                        <li><a href="https://www.gunbroker.com/Education" target="_blank">Firearms Transaction Guide</a></li>
+                        <li><a href="https://www.congress.gov/" target="_blank">Federal Firearms Laws</a></li>
+                    </ul>
+                </div>
+                <div class="resource-card">
+                    <h3>Research & Data</h3>
+                    <ul>
+                        <li><a href="https://www.rand.org/research/gun-policy.html" target="_blank">RAND Gun Policy Research</a></li>
+                        <li><a href="https://www.pewresearch.org/topics/gun-control/" target="_blank">Pew Research Center</a></li>
+                        <li><a href="https://www.giffords.org/research/" target="_blank">Giffords Law Center</a></li>
+                        <li><a href="https://www.johnshopkins.edu/" target="_blank">Johns Hopkins Center for Gun Violence Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="resource-card">
+                    <h3>Advocacy Organizations</h3>
+                    <ul>
+                        <li><a href="https://www.everytown.org/" target="_blank">Everytown for Gun Safety</a></li>
+                        <li><a href="https://www.bradycampaign.org/" target="_blank">Brady Campaign</a></li>
+                        <li><a href="https://www.nra.org/" target="_blank">National Rifle Association</a></li>
+                        <li><a href="https://www.gunowners.org/" target="_blank">Gun Owners of America</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" style="background-color: #f0f5f9;">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">What information is checked in a firearm background check?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>The NICS checks several databases including the National Crime Information Center, Interstate Identification Index, and NICS Index. These contain records of criminal history, mental health adjudications, immigration status, and other prohibiting factors.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Are background checks required for all gun purchases?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Federal law requires background checks for guns sold by licensed dealers. However, private sales between individuals (often called the "gun show loophole") are not subject to federal background check requirements, though many states have closed this gap with their own laws.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How effective are background checks at preventing gun violence?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Research indicates that background checks can be effective when comprehensive. Studies have shown states with universal background check laws have lower rates of gun trafficking and firearm suicides. However, effectiveness depends on complete and accurate records in the databases.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What is the "Charleston Loophole"?
+                        <span>+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>This refers to a provision that allows a firearm sale to proceed if a background check is not completed within three business days. This loophole gained attention after the 2015 Charleston church shooting, where the perpetrator obtained his firearm through this provision.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Firearm Safety</h3>
+                    <p>Providing balanced information about firearm background checks and gun control policies to promote informed discussions and public safety.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#background-checks">Background Checks</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li>Email: info@firearmsafety.org</li>
+                        <li>Phone: (555) 123-4567</li>
+                        <li>Address: 123 Safety Ave, Washington DC</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Firearm Safety Information Center. All rights reserved. This site is for educational purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+                
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.classList.remove('active');
+                });
+                
+                // Update all icons to '+'
+                document.querySelectorAll('.faq-question span').forEach(span => {
+                    span.textContent = '+';
+                });
+                
+                // If this answer wasn't active, open it
+                if (!isActive) {
+                    answer.classList.add('active');
+                    question.querySelector('span').textContent = '-';
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.querySelector('nav ul').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
